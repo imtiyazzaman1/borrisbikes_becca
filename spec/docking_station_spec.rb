@@ -27,6 +27,23 @@ it 'raises an error if trying to dock bike at a full station' do
 	expect { docking_station.dock_bike(Bike.new) }.to raise_error('Docking station full')
 end
 
+it 'lets user change capacity' do
+	docking_station = DockingStation.new(10)
+	10.times { docking_station.dock_bike(Bike.new) }
+	expect { docking_station.dock_bike(Bike.new) }.to raise_error('Docking station full')
+end
+
+it 'allows users to report if bike is broken' do
+	docking_station = DockingStation.new
+	expect(docking_station.dock_bike(Bike.new(true))).to eq "You have reported the bike broken"
+end
+
+it 'refuses to release broken bikes' do
+	docking_station = DockingStation.new
+	docking_station.dock_bike(Bike.new(true))
+	expect { docking_station.release_bike }.to raise_error('Cannot release bike. Bike is broken')
+end
+
 end
 
 

@@ -11,12 +11,19 @@ attr_reader :rack, :capacity
 
   def release_bike
     raise 'No bikes to release' unless !(@rack.empty?)
-    Bike.new
+    @rack.each do |bike|
+      if bike.working?
+        @rack.delete(bike)
+        return bike
+      end
+    end
+    raise "Cannot release bike. Bike is broken"
   end
 
   def dock_bike(bike)
     raise 'Docking station full' unless !full?
     @rack << bike
+    "You have reported the bike broken" if !(bike.working?)
   end
 
   private
