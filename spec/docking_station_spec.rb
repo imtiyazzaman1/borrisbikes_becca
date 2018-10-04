@@ -23,7 +23,7 @@ end
 
 it 'raises an error if trying to dock bike at a full station' do
 	docking_station = DockingStation.new
-	docking_station.dock_bike(Bike.new)
+	20.times { docking_station.dock_bike(Bike.new) }
 	expect { docking_station.dock_bike(Bike.new) }.to raise_error('Docking station full')
 end
 
