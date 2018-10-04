@@ -14,6 +14,7 @@ attr_reader :rack
   end
 
   def dock_bike(bike)
+    raise 'Docking station full' unless @rack.length < 1
     @rack << bike
   end
 
