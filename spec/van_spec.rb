@@ -35,4 +35,12 @@ describe Van do
     # expect(subject.rack). to eq [broken_bike]
   end
 
+  it "should leave only working bikes at the station" do
+    allow(bike).to receive(:broken?).and_return true
+    allow(bike_2).to receive(:broken?).and_return false
+    allow(station).to receive(:rack).and_return [bike, bike_2]
+    subject.collect_broken_bikes(station)
+    expect(station.rack).to eq [bike_2]
+  end
+
 end
