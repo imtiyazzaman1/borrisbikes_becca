@@ -8,7 +8,8 @@ class Van
   end
 
   def collect_broken_bikes(station)
-    @rack << station.rack[0]
+    station.rack.each do |bike|
+    @rack << bike if bike.broken? end
     "Broken bikes have been collected"
   end
 end

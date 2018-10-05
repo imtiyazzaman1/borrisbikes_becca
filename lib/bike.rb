@@ -3,6 +3,9 @@ class Bike
     @broken = broken
   end
 
+def broken?
+  @broken
+end
 
 def working?
   !@broken
