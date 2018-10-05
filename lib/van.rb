@@ -16,4 +16,11 @@ class Van
     end
     "Broken bikes have been collected"
   end
+
+  def deliver_broken_bikes(garage)
+    @rack.each do |bike|
+      garage.storage << bike
+    end
+    @rack = []
+  end
 end
