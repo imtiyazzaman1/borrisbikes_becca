@@ -11,4 +11,8 @@ def working?
   !@broken
 end
 
+def fixed
+  @broken = false
+end
+
 end
